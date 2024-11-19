@@ -58,6 +58,13 @@ for columna in columnas_numericas:
 #print("Datos después de eliminar outliers:")
 #print(df.describe())
 
+def dist_variables_numericas():
+    # Distribución de las variables numéricas
+    columnas_numericas = df.select_dtypes(include=['float64', 'int64']).columns
+    df[columnas_numericas].hist(bins=15, figsize=(15, 10))
+    plt.suptitle("Distribución de las variables numéricas")
+    plt.show()
+    
 def boxplot_columnas(columnas):
 
     plt.figure(figsize=(15, 10))
@@ -71,3 +78,4 @@ def boxplot_columnas(columnas):
 
 columnas_seleccionadas = ['DEP_TIME', 'DEP_DELAY', 'TAXI_OUT', 'WHEELS_OFF', 'ARR_DELAY']
 #boxplot_columnas(columnas_seleccionadas)
+dist_variables_numericas()

@@ -4,12 +4,12 @@ print("Pereme tantito, le ando echando ganas")
 
 # Discretizar ARR_DELAY en categorías
 def categorizar_retraso(delay):
-    if delay <= 0:
-        return 'a_tiempo'
-    elif delay <= 15:
-        return 'leve'
+    if delay >= 15:
+        return 'Delay'
+    elif delay <= -15:
+        return 'Early'
     else:
-        return 'significativo'
+        return 'OnTime'
     
 df_airlines['ARR_DELAY_CATEGORY'] = df_airlines['ARR_DELAY'].apply(categorizar_retraso)
 
