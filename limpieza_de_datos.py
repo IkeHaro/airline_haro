@@ -8,8 +8,8 @@ df = pd.read_csv('/Users/danny/OneDrive/Escritorio/airline_haro/train_airlines_d
 #df.shape
 
 # Resumen de valores nulos antes de la limpieza
-print("Valores nulos antes de la limpieza:")
-print(df.isnull().sum())
+#print("Valores nulos antes de la limpieza:")
+#print(df.isnull().sum())
 
 # Eliminar filas con valores nulos en caso de necesitarlo
     #df_sin_nulos = df.dropna()
@@ -19,19 +19,19 @@ print(df.isnull().sum())
     #print(df_sin_nulos.isnull().sum())
     
 # Número de filas duplicadas antes de la limpieza
-duplicados = df.duplicated().sum()
-print(f"Número de filas duplicadas antes de la limpieza: {duplicados}")
+#duplicados = df.duplicated().sum()
+#print(f"Número de filas duplicadas antes de la limpieza: {duplicados}")
 
 # Eliminar filas duplicadas en caso de necesitarlo
-df_sin_duplicados = df.drop_duplicates()
+#df_sin_duplicados = df.drop_duplicates()
 
 # Número de filas duplicadas después de la limpieza
-duplicados_despues = df_sin_duplicados.duplicated().sum()
-print(f"Número de filas duplicadas después de la limpieza: {duplicados_despues}")
+#duplicados_despues = df_sin_duplicados.duplicated().sum()
+#print(f"Número de filas duplicadas después de la limpieza: {duplicados_despues}")
 
 # Revisar los tipos de datos de cada columna
-print("Tipos de datos antes de la limpieza:")
-print(df.dtypes)
+#print("Tipos de datos antes de la limpieza:")
+#print(df.dtypes)
 
 # Seleccionar columnas numéricas para análisis de outliers
 columnas_numericas = ['DEP_TIME', 'DEP_DELAY', 'TAXI_OUT', 'WHEELS_OFF', 'ARR_DELAY']
@@ -55,8 +55,8 @@ for columna in columnas_numericas:
     df = eliminar_outliers(df, columna)
 
 # Mostrar dataset después de eliminar outliers
-print("Datos después de eliminar outliers:")
-print(df.describe())
+#print("Datos después de eliminar outliers:")
+#print(df.describe())
 
 def boxplot_columnas(columnas):
 
@@ -70,4 +70,4 @@ def boxplot_columnas(columnas):
     plt.show()
 
 columnas_seleccionadas = ['DEP_TIME', 'DEP_DELAY', 'TAXI_OUT', 'WHEELS_OFF', 'ARR_DELAY']
-boxplot_columnas(columnas_seleccionadas)
+#boxplot_columnas(columnas_seleccionadas)
