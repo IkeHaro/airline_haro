@@ -3,8 +3,8 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-#df = pd.read_csv('/Users/danny/OneDrive/Escritorio/airline_haro/train_airlines_delay_challenge.csv')
-df = pd.read_csv('/Users/danny/OneDrive/Documents/GitHub/airline_haro/train_airlines_delay_challenge.csv')
+df = pd.read_csv('/Users/danny/OneDrive/Escritorio/airline_haro/train_airlines_delay_challenge.csv')
+#df = pd.read_csv('/Users/danny/OneDrive/Documents/GitHub/airline_haro/train_airlines_delay_challenge.csv')
 #df.shape
 
 # Resumen de valores nulos antes de la limpieza
@@ -57,3 +57,17 @@ for columna in columnas_numericas:
 # Mostrar dataset después de eliminar outliers
 print("Datos después de eliminar outliers:")
 print(df.describe())
+
+def boxplot_columnas(columnas):
+
+    plt.figure(figsize=(15, 10))
+    for i, col in enumerate(columnas):
+        plt.subplot(1, len(columnas), i + 1)  # Crear subplots en una sola fila
+        sns.boxplot(y=df[col], color='skyblue')
+        plt.title(f"Boxplot de {col}")
+        plt.xlabel(col)
+    plt.tight_layout()
+    plt.show()
+
+columnas_seleccionadas = ['DEP_TIME', 'DEP_DELAY', 'TAXI_OUT', 'WHEELS_OFF', 'ARR_DELAY']
+boxplot_columnas(columnas_seleccionadas)
