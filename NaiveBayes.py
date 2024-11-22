@@ -14,7 +14,7 @@ def categorizar_retraso(delay):
 df_airlines['ARR_DELAY_CATEGORY'] = df_airlines['ARR_DELAY'].apply(categorizar_retraso)
 
 # Selección de muestra
-sample_size = 0.1  
+sample_size = 0.2  
 df_sample = df_airlines.sample(frac=sample_size, random_state=42)
 
 from sklearn.decomposition import PCA
