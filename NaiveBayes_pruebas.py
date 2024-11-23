@@ -1,6 +1,8 @@
 from extr_trans_carac import df_airlines
+from sklearn.utils import resample
+import pandas as pd
 
-print("Pereme tantito, le ando echando ganas")
+print("Pereme tantito, ando chambeando")
 
 # Discretizar ARR_DELAY en categorías
 def categorizar_retraso(delay):
@@ -13,9 +15,31 @@ def categorizar_retraso(delay):
     
 df_airlines['ARR_DELAY_CATEGORY'] = df_airlines['ARR_DELAY'].apply(categorizar_retraso)
 
+# Separar las clases
+df_majority = df_airlines[df_airlines['ARR_DELAY_CATEGORY'] == 'OnTime']
+df_minority_early = df_airlines[df_airlines['ARR_DELAY_CATEGORY'] == 'Early']
+df_minority_delay = df_airlines[df_airlines['ARR_DELAY_CATEGORY'] == 'Delay']
+
+# Reducir la clase mayoritaria al tamaño de la clase minoritaria más pequeña
+minority_size = min(len(df_minority_early), len(df_minority_delay))
+df_majority_downsampled = resample(df_majority,replace=False,n_samples=minority_size,random_state=42)
+
+# Combinar las clases balanceadas
+df_balanced = pd.concat([df_majority_downsampled, df_minority_early, df_minority_delay])
+
+import matplotlib.pyplot as plt
+def dist_variables_numericas():
+    # Distribución ARR_DELAY_CATEGORY
+    columnas_numericas = df_balanced.select_dtypes(include=['float64', 'int64']).columns
+    df_balanced[columnas_numericas].hist(bins=15, figsize=(15, 10))
+    plt.suptitle("Distribución de las variables numéricas")
+    plt.show()    
+columnas_seleccionadas = ['ARR_DELAY_CATEGORY']
+dist_variables_numericas()
+
 # Selección de muestra
-sample_size = 0.2  
-df_sample = df_airlines.sample(frac=sample_size, random_state=42)
+sample_size = 0.30  
+df_sample = df_balanced.sample(frac=sample_size, random_state=42)
 
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler

@@ -60,6 +60,3 @@ def boxplot_columnas(columnas):
 #estadisticas_descriptivas()
 #dist_variables_numericas()
 #vis_variables_categoricas()
-
-columnas_seleccionadas = ['DEP_TIME', 'DEP_DELAY', 'TAXI_OUT', 'WHEELS_OFF', 'ARR_DELAY']
-boxplot_columnas(columnas_seleccionadas)

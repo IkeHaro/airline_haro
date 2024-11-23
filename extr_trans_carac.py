@@ -37,5 +37,5 @@ df_airlines = pd.get_dummies(df, columns=['OP_CARRIER', 'ORIGIN', 'DEST', 'DEP_T
 # Eliminar columnas irrelevantes o ya procesadas
 df_airlines = df_airlines.drop(columns=['FL_DATE', 'WHEELS_OFF', 'DEP_TIME', 'OP_CARRIER_FL_NUM'])
 
-print("Transformaciones completadas y nuevas características:")
-print(df_airlines.head())
+#print("Transformaciones completadas y nuevas características:")
+#print(df_airlines.head())
