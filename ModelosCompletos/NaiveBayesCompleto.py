@@ -135,7 +135,7 @@ y_pred = modelo_nb.predict(X_test)
 print("Matriz de confusión:")
 print(confusion_matrix(y_test, y_pred))
 
-print("\nReporte de clasificación:")
+print("\nReporte de clasificación Naive Bayes:")
 print(classification_report(y_test, y_pred))
 
 print("\nExactitud del modelo:")

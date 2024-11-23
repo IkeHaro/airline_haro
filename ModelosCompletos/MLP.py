@@ -138,7 +138,7 @@ mlp.fit(X_train, y_train)
 y_pred = mlp.predict(X_test)
 
 # Evaluar el modelo
-print("Reporte de Clasificación:")
+print("Reporte de Clasificación MLP:")
 print(classification_report(y_test, y_pred))
 
 # Matriz de confusión

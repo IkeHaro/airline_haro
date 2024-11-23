@@ -136,7 +136,7 @@ rf.fit(X_train, y_train)
 y_pred = rf.predict(X_test)
 
 # Evaluar el modelo
-print("Reporte de Clasificación:")
+print("Reporte de Clasificación RandomForest:")
 print(classification_report(y_test, y_pred))
 
 # Matriz de confusión

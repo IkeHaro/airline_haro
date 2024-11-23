@@ -135,7 +135,7 @@ y_pred = clf.predict(X_test)
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 cm = confusion_matrix(y_test, y_pred, labels=clf.classes_)
 print("Accuracy:", accuracy_score(y_test, y_pred))
-print("\nReporte de Clasificación:")
+print("\nReporte de Clasificación C4.5:")
 print(classification_report(y_test, y_pred))
 print("Matriz de Confusión:")
 print(cm)
