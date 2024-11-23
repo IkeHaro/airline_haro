@@ -109,10 +109,6 @@ from sklearn.preprocessing import StandardScaler
 # Escalar los datos (solo las columnas numéricas)
 X_scaled = StandardScaler().fit_transform(df_sample.drop(columns=['ARR_DELAY', 'ARR_DELAY_CATEGORY']))
 
-# Aplicar PCA para reducir la dimensionalidad
-#pca = PCA(n_components=100, random_state=42)
-#X_pca = pca.fit_transform(X_scaled)
-
 # Definir X (características) e y (variable objetivo)
 X = X_scaled
 y = df_sample['ARR_DELAY_CATEGORY']
@@ -122,28 +118,30 @@ from sklearn.model_selection import train_test_split
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Crear el clasificador Perceptrón Multicapa
-mlp = MLPClassifier(
-    hidden_layer_sizes=(100, 50),  # Capas ocultas con 100 y 50 neuronas
-    activation='relu',            # Función de activación (ReLU por defecto)
-    solver='adam',                # Optimizador Adam
-    max_iter=300,                 # Iteraciones máximas
-    random_state=42               # Reproducibilidad
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay
+
+# Crear el clasificador Random Forest
+rf = RandomForestClassifier(
+    n_estimators=100,      # Número de árboles
+    max_depth=None,        # Profundidad máxima de los árboles (sin límite por defecto)
+    random_state=42,       # Reproducibilidad
+    class_weight='balanced' # Balancea las clases automáticamente
 )
 
 # Entrenar el modelo
-mlp.fit(X_train, y_train)
+rf.fit(X_train, y_train)
 
 # Realizar predicciones
-y_pred = mlp.predict(X_test)
+y_pred = rf.predict(X_test)
 
 # Evaluar el modelo
 print("Reporte de Clasificación:")
 print(classification_report(y_test, y_pred))
 
 # Matriz de confusión
-cm = confusion_matrix(y_test, y_pred, labels=mlp.classes_)
-disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=mlp.classes_)
+cm = confusion_matrix(y_test, y_pred, labels=rf.classes_)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=rf.classes_)
 disp.plot(cmap='Blues', values_format='d')
-plt.title("Matriz de Confusión para Perceptrón Multicapa")
+plt.title("Matriz de Confusión para Random Forest")
 plt.show()
