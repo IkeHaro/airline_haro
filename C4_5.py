@@ -132,6 +132,10 @@ clf.fit(X_train, y_train)
 y_pred = clf.predict(X_test)
 
 # Evaluar el modelo
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+cm = confusion_matrix(y_test, y_pred, labels=clf.classes_)
 print("Accuracy:", accuracy_score(y_test, y_pred))
 print("\nReporte de Clasificación:")
 print(classification_report(y_test, y_pred))
+print("Matriz de Confusión:")
+print(cm)
