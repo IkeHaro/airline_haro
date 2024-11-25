@@ -112,12 +112,6 @@ from sklearn.preprocessing import LabelEncoder
 X = df_sample.drop(columns=['ARR_DELAY_CATEGORY'])
 y = df_sample['ARR_DELAY_CATEGORY']
 
-# Convertir variables categóricas a numéricas si es necesario
-categorical_columns = X.select_dtypes(include=['object']).columns
-if not categorical_columns.empty:
-    for col in categorical_columns:
-        le = LabelEncoder()
-        X[col] = le.fit_transform(X[col])
 
 # Dividir en conjunto de entrenamiento y prueba
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
